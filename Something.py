@@ -11,7 +11,7 @@ font = pygame.font.SysFont('Calibri', 35)
 
 class Circle(object):
     def __init__(self):
-        self.c_size = 40
+        self.c_size = 80
         self.width = self.c_size * 2
         self.height = self.c_size * 2
         self.shape = pygame.Surface([self.width, self.height])
@@ -53,9 +53,31 @@ def display_score(text, font, win):
     textRect.center = (x, y)
     win.blit(textFrame, textRect)
 
+def title(title, font, win):
+    x = win.get_width() - 300
+    y = 50
+    title = font.render(title, True, (0, 0, 0))
+    title_rect = title.get_rect()
+    title_rect.center = (x, y)
+    win.blit(title, title_rect)
+
+def msg(msg, font, win):
+    x = win.get_width() - 300
+    y = 100
+    msg = font.render(msg, True, (0, 0, 0))
+    msg_rect = msg.get_rect()
+    msg_rect.center = (x, y)
+    win.blit(msg, msg_rect)
+
+
+
 
 Clicks = 0
 print(Clicks)
+Title = "Circle Clicker"
+print(Title)
+message = "Press Escape To Exit"
+print(msg)
 
 run = True
 c = Circle()
@@ -76,13 +98,12 @@ while run:
     if keys[pygame.K_ESCAPE]:
         run = False 
 
-    # if keys[pygame.K_SPACE]:
-    #     Clicks += 1
-    #     print(Clicks)
 
     screen.fill(yellow)
     c.draw(screen)
     display_score(str(Clicks), font, screen)
+    title(str(Title), font, screen)
+    msg(str(message), font, screen)
     pygame.display.flip()
     # pygame.display.update()
 
